@@ -9,4 +9,18 @@ PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"
 		SELECT count(1) FROM lecture.member
 		WHERE member_id = #{memberId}
 	</select>
+	
+	<!-- public int signUp(HashMap<String, String> params); -->
+	<insert id="signUp" parameterType="java.util.HashMap">
+		INSERT INTO lecture.member
+		(member_id, passwd, nickname, member_name, email, join_dtm)
+		VALUES(
+			#{memberId}, 
+			#{passwd}, 
+			#{nickname}, 
+			#{memberName}, 
+			#{email}, 
+			to_char(now(), 'YYYYMMDDHH24MISS')
+		)
+	</insert>
 </mapper>

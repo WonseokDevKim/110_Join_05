@@ -11,7 +11,14 @@
 <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Montserrat:400,700'>
 <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css'>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/style.css">
-
+<script type="text/javascript">
+	window.onload = function(e) {
+		var resultMsg = "${resultMsg}";
+		if(resultMsg.length > 0) {
+			alert(resultMsg);
+		}
+	}
+</script>
 </head>
 <body>
 <!-- partial:index.partial.html -->
@@ -22,7 +29,7 @@
 </div>
 <div class="form">
   <div class="thumbnail"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/169963/hat.svg"/></div>
-  <form class="register-form">
+  <form class="register-form" action="<c:url value='/sign-up.do'/>" method="post">
     <input type="text" placeholder="ID" name="memberId" id="memberId"/>
     <span id="idCheckMsg"></span>
     <input type="password" placeholder="Password" name="passwd"/>
