@@ -23,7 +23,8 @@
 <div class="form">
   <div class="thumbnail"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/169963/hat.svg"/></div>
   <form class="register-form">
-    <input type="text" placeholder="ID" name="memberId"/>
+    <input type="text" placeholder="ID" name="memberId" id="memberId"/>
+    <span id="idCheckMsg"></span>
     <input type="password" placeholder="Password" name="passwd"/>
     <input type="text" placeholder="Name" name="memberName"/>
     <input type="text" placeholder="Nickname" name="nickname"/>
@@ -44,6 +45,38 @@
 <!-- partial -->
   <script src='//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
   <script  src="${pageContext.request.contextPath}/resources/js/script.js"></script>
-
+  <script>
+  	$(document).ready(function(){
+  		// ID 중복 확인
+  		$('#memberId').on('focusout', function(){
+  			// 6자리 이하 가입 막기
+  			var memberId = $("#memberId").val();
+  			if(memberId.trim() == '' || memberId.length <= 6) {
+				$("#idCheckMsg").css("color", "red").text("ID는 7자리 이상이어야 합니다.");
+				return false;
+			}
+  			// Ajax로 전송
+			$.ajax({
+				url: './confirmId.do',
+				type: 'POST',
+				data: {
+					'memberId': memberId
+				},
+				dataType:'json',
+				success: function(result) { // 컨트롤러에서 넘어온 result를 받는다.
+					if(result == "0") {
+						$("#idCheckMsg").css("color", "green").text("사용 가능한 ID입니다.");
+					} else {
+						$("#idCheckMsg").css("color", "red").text("ID 중복입니다.");
+						$("#memberId").val('');
+					}
+				},
+				error:function(){
+	                alert("에러입니다");
+	            }
+			}); // ajax end
+  		});
+  	})
+  </script>
 </body>
 </html>
