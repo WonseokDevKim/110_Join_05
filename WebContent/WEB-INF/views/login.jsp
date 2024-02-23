@@ -30,18 +30,18 @@
 <div class="form">
   <div class="thumbnail"><img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/169963/hat.svg"/></div>
   <form class="register-form" action="<c:url value='/sign-up.do'/>" method="post">
-    <input type="text" placeholder="ID" name="memberId" id="memberId"/>
+    <input type="text" placeholder="ID" name="memberId" id="memberId" required/>
     <span id="idCheckMsg"></span>
-    <input type="password" placeholder="Password" name="passwd"/>
-    <input type="text" placeholder="Name" name="memberName"/>
-    <input type="text" placeholder="Nickname" name="nickname"/>
-    <input type="text" placeholder="Email address" name="email"/>
+    <input type="password" placeholder="Password" name="passwd" required/>
+    <input type="text" placeholder="Name" name="memberName" required/>
+    <input type="text" placeholder="Nickname" name="nickname" required/>
+    <input type="text" placeholder="Email address" name="email" required/>
     <button>create</button>
     <p class="message">Already registered? <a href="#">Sign In</a></p>
   </form>
   <form class="login-form">
-    <input type="text" placeholder="ID" name="memberId"/>
-    <input type="password" placeholder="Password" name="passwd"/>
+    <input type="text" placeholder="ID" name="memberId" required/>
+    <input type="password" placeholder="Password" name="passwd" required/>
     <button>login</button>
     <p class="message">Not registered? <a href="#">Create an account</a></p>
   </form>
